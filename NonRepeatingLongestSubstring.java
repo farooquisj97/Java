@@ -2,7 +2,7 @@ import java.util.*;
 
 class NonReaptingLongestSubstring {
     public static void main(String[] args) {
-        String s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+        String s = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~ ";
         int maxlen = lengthOfLongestSubstring(s);
         System.err.println(maxlen);
     }
@@ -12,12 +12,14 @@ class NonReaptingLongestSubstring {
         int len = -1;
         for (int i=0; i<al.size(); i++){
             String s1 = al.get(i);
-            //System.err.println(s1);
             if (repChar(s1)){
                 al.remove(s1);
             }
             else {
-                len = (s1.length()>len)? s1.length() : len;
+                if(s1.length()>len){
+                    len = s1.length();
+                    System.out.println(s1);
+                }
             }
         }
         return len;
@@ -29,7 +31,7 @@ class NonReaptingLongestSubstring {
             for(int j=i; j<=str.length(); j++){
                 String s1 = str.substring(i,j);
                 al.add(s1);
-                System.err.println(s1);
+                //System.err.println(s1);
             }
         }
         return al;
